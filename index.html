@@ -6,43 +6,69 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Forecast</title>
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,700;1,300;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="stylesheet.css">
 </head>
 
 <body>
-    <form id="city-form">
-        <label for="city-input">Search for a City</label>
-        <input type="text" id="city-input"><br>
-        <input id="find-city" type="submit" value="City Search">
-    </form>
 
-    <div id="city-view"></div>
+    <header>
+        <h1>Wather Dashboard</h1>
+    </header>
 
+    <conatiner class="row">
+        <aside class="col-md-4">
+            <h2>Search for a City</h2>
 
+            <form class="row" id="city-form">
+                <input type="text" id="city-input"><br>
+                <input id="find-city" class="btn btn-primary btn-lg" type="submit" value="City Search">
+            </form>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script type="text/javascript">
-
-    $("#find-city").on("click", function (event) {
-
-        event.preventDefault();
-
-        var cityName = $("#city-input").val();
+            <div id="city-log">
+                <ul class="list-group">
+                </ul>
+            </div>
         
-        queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=a2d1d70e63ea85ab0e1dec71d8d209c2"; 
+        </aside>   
 
-        $.ajax({
-            url: queryURL,
-            method: "GET"
-        }).then(function (response) {
-            $("#city-view").text(JSON.stringify(response));
+        <section class="col-md-6"> 
+
+        </section>
+
+    </conatiner>
+  
+
+
+
+    <!-- preivew api -->
+    <!-- <div id="city-view"></div> -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+
+        $("#find-city").on("click", function (event) {
+
+            event.preventDefault();
+
+            var cityName = $("#city-input").val();
+
+            queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=a2d1d70e63ea85ab0e1dec71d8d209c2";
+
+            $.ajax({
+                url: queryURL,
+                method: "GET"
+            }).then(function (response) {
+                $("#city-view").text(JSON.stringify(response));
+            });
+
         });
 
-    });
 
-
-</script>
+    </script>
 
 </body>
 
