@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Forecast</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <form id="city-form">
+        <label for="city-input">Search for a City</label>
+        <input type="text" id="city-input"><br>
+        <input id="find-city" type="submit" value="City Search">
+    </form>
+
+    <div id="city-view"></div>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+    $("#find-city").on("click", function (event) {
+
+        event.preventDefault();
+
+        var cityName = $("#city-input").val();
+        
+        queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=a2d1d70e63ea85ab0e1dec71d8d209c2"; 
+
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        }).then(function (response) {
+            $("#city-view").text(JSON.stringify(response));
+        });
+
+    });
+
+
+</script>
+
+</body>
+
+</html>
