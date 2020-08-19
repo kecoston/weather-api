@@ -4,6 +4,10 @@ $("#find-city").on("click", function (event) {
     $("#cityWeatherDetails").show()
     var cityName = $("#city-input").val();
 
+    var today = new Date();
+    var date = (today.getMonth() + 1) + ("") + '-' + ("") + today.getDate() + ("") + '-' + ("") + today.getFullYear();
+ 
+
     event.preventDefault();
 
     queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=a2d1d70e63ea85ab0e1dec71d8d209c2";
@@ -13,8 +17,8 @@ $("#find-city").on("click", function (event) {
         method: "GET"
     }).then(function (response) {
         console.log(response)
-        // $("#city-view").text(JSON.stringify(response));
-        $("#city-name").text("City: " + response.name);
+
+        $("#city-name").text("City: " + response.name + " " + date);
 
         var tempF = (response.main.temp - 273.15) * 1.80 + 32;
         $("#temp").text("Temperature: " + parseInt(tempF) + "F");
@@ -35,27 +39,46 @@ $("#find-city").on("click", function (event) {
 
 });
 
-function fiveDayForecast(lat,lon) {
+function fiveDayForecast(lat, lon) {
 
     fiveQueryURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&appid=a2d1d70e63ea85ab0e1dec71d8d209c2";
     $.ajax({
         url: fiveQueryURL,
         method: "GET"
-    }).then(function (fiveresponse) {
- 
-        var dailyForecast = (fiveresponse.daily[0])
+    }).then(function (fiveresponse) {        
 
-        var icon = (dailyForecast.weather[0].icon)
-    
+        //for loop for five day forecast
+
+        // for (var i = 0; i < 5; i++){
+        
+        // var arrayIndex = fiveresponse.daily[i]   
+
+        // var box = $("<div>")
+        // box.addClass("card border-info mb-3 col-sm-2")
+        // $("#forecast-boxes").append(box)
+
+        // var dailyForecastDay1 = $("<h5>").text(arrayIndex.daily[0])
+        // console.log(dailyForecastDay1)
+        // dailyForecastDay1.addClass("card-title")
+        // $("#forecast-boxes").append(dailyForecastDay1)
+
+        // }
+
+        var dailyForecastDay1 = (fiveresponse.daily[0])
+
+        
+        var icon = (dailyForecastDay1.weather[0].icon)
+
         var imageURL = ("http://openweathermap.org/img/wn/" + icon + "@2x.png")
         iconEl = $("<img>").attr("src", imageURL)
 
-        var tempB = (dailyForecast.temp.day - 273.15) * 1.80 + 32;
-        var humidityB = (dailyForecast.humidity)
+        var tempB = (dailyForecastDay1.temp.day - 273.15) * 1.80 + 32;
+        var humidityB = (dailyForecastDay1.humidity)
 
         $("#icon").append(iconEl)
         $("#tempB").append("Temperature: " + parseInt(tempB) + "F")
         $("#humidityB").append("Humidity: " + humidityB + "%")
+
     });
 }
 
@@ -96,5 +119,5 @@ function renderCityList() {
     }
 }
 
-// renderCityList()
+
 

@@ -34,15 +34,21 @@ h2 {
     margin-top: 40px;
 }
 
+#hightlight {
+    background-color: yellow;
+}
+
 #forecast{
     height: 200px;
 }
 
-#forecast-box{
+.forecast-box{
     margin: 20px;
+    padding: 10px;
     width: 15%;
+    
     color: white;
-    background-color: blue;
+    background-color: lightblue;
 
 }
 .forecast-data {
