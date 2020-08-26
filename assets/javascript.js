@@ -10,7 +10,7 @@ $("#find-city").on("click", function (event) {
 
     event.preventDefault();
 
-    queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=a2d1d70e63ea85ab0e1dec71d8d209c2";
+    queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=a2d1d70e63ea85ab0e1dec71d8d209c2";
 
     $.ajax({
         url: queryURL,
@@ -41,7 +41,7 @@ $("#find-city").on("click", function (event) {
 
 function fiveDayForecast(lat, lon) {
 
-    fiveQueryURL = "http://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&appid=a2d1d70e63ea85ab0e1dec71d8d209c2";
+    fiveQueryURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&appid=a2d1d70e63ea85ab0e1dec71d8d209c2";
     $.ajax({
         url: fiveQueryURL,
         method: "GET"
@@ -84,7 +84,7 @@ function fiveDayForecast(lat, lon) {
 
 function UVI(lat, lon) {
 
-    uvQueryURL = "http://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&appid=a2d1d70e63ea85ab0e1dec71d8d209c2";
+    uvQueryURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&appid=a2d1d70e63ea85ab0e1dec71d8d209c2";
 
     $.ajax({
         url: uvQueryURL,
