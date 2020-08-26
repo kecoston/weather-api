@@ -10,7 +10,7 @@ $("#find-city").on("click", function (event) {
 
     event.preventDefault();
 
-    queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=a2d1d70e63ea85ab0e1dec71d8d209c2";
+    queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=a2d1d70e63ea85ab0e1dec71d8d209c2";
 
     $.ajax({
         url: queryURL,
