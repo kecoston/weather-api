@@ -65,7 +65,7 @@ function fiveDayForecast(lat, lon) {
         // }
 
         var dailyForecastDay1 = (fiveresponse.daily[0])
-
+        console.log(dailyForecastDay1)
         
         var icon = (dailyForecastDay1.weather[0].icon)
 
@@ -118,6 +118,3 @@ function renderCityList() {
         $(".list-group").append(listItem)
     }
 }
-
-
-
